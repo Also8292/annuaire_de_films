@@ -4,19 +4,50 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>film</title>
+
+   {% if title == '/'  %}
+       {% set title = 'Accueil' %}   
+   {% endif %}
+
+    <title>CinéZone - {{ title }}</title>
     <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="public/fonts/material-icons.css">
     <link rel="stylesheet" href="public/fonts/ionicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
     <link rel="stylesheet" href="public/css/styles.min.css">
 </head>
 
 <body>
-    {# carrousel #}
+    {# menu #}
+    <nav class="sidebar_menu" onclick="hiddenMenu()">
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+    </nav>
+    <div id="menu_hamburger" onclick="showMenu()">
+        <!-- <a href=""> -->
+            {# <i class="material-icons">menu</i> #}
+            
+            <img src="public/img/menu.png" width="30" height="30">
+        <!-- </a> -->
+    </div>
+    <script>
+        var menu = document.querySelector('#menu');
+        function showMenu() {
+            document.querySelector('.sidebar_menu').classList.toggle('show');
+        }
+        function hiddenMenu() {
+            document.querySelector('.sidebar_menu').classList.remove('show');
+        }
+    </script>
+
+    {# header bar #}
     <div>
         <nav class="navbar navbar-default">
             <div class="container">
-                <div class="navbar-header"><a class="navbar-brand" href="#"><strong>Cinema Awa</strong></a><button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
+                <div class="navbar-header"><a class="navbar-brand" href="#"><strong>CinéZone</strong></a><button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><i class="material-icons">search</i></span></button></div>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <form class="navbar-form navbar-left" style="float: right !important">
                         <div class="input-group">
@@ -30,6 +61,8 @@
                 </div>
             </div>
         </nav>
+
+        {# carrousel #}
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -39,30 +72,30 @@
             </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="public/img/film1.jpg" alt="First slide" style="height: 630px; width: 100%;">
+      <img class="d-block w-100" src="public/img/slide4.jpg" alt="First slide" style="height: 630px; width: 100%;">
         <div class="carousel-caption d-none d-md-block">
-            <h1>Justice League</h1>
+            <h1 class="title">Justice League</h1>
             <p></p>
         </div>
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="public/img/film2.jpg" alt="Second slide" style="height: 630px; width: 100%;">        
+      <img class="d-block w-100" src="public/img/slide1.jpg" alt="Second slide" style="height: 630px; width: 100%;">        
         <div class="carousel-caption d-none d-md-block">
-            <h1>Zootopie</h1>
+            <h1 class="title">Zootopie</h1>
             <p></p>
         </div>
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="public/img/film3.jpg" alt="Third slide" style="height: 630px; width: 100%;">        
+      <img class="d-block w-100" src="public/img/slide2.jpg" alt="Third slide" style="height: 630px; width: 100%;">        
         <div class="carousel-caption d-none d-md-block">
-            <h1>Peter Rabbit</h1>
+            <h1 class="title">Peter Rabbit</h1>
             <p></p>
         </div>
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="public/img/film4.jpg" alt="Third slide" style="height: 630px; width: 100%;">        
+      <img class="d-block w-100" src="public/img/slide3.jpg" alt="Third slide" style="height: 630px; width: 100%;">        
         <div class="carousel-caption d-none d-md-block">
-            <h1>Les Minions</h1>
+            <h1 class="title">Les Minions</h1>
             <p></p>
         </div>
     </div>
@@ -94,8 +127,8 @@
                 {% for cle, film in films %}
 
                 <div class="col-lg-3 col-md-4 col-sm-6 item">
-                    <a href="{{images[cle]}}" data-lightbox="photos">
-                        <img class="img-responsive" src="{{images[cle]}}" style=" width: 189px; height: 267px;">
+                    <a href="{{images[cle]}}" data-lightbox="photos" title="{{description[cle]}}">
+                        <img class="img-responsive" src="{{images[cle]}}" style="width: 189px; height: 267px;">
                     </a>
                 </div>
 
@@ -103,6 +136,11 @@
             </div>
         </div>
     </div>
+    <script>
+        
+        
+    
+    </script>
 {# end gallery #}
 
     <div class="footer-dark">
@@ -110,26 +148,32 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-md-push-6 item text">
-                        <h3>Company Name</h3>
-                        <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
+                        <h3>AccessCode School Dakar - Kéloumak</h3>
+                        <p>Ce site a été réalisé par :
+                            <ul>
+                                <li><a href="#" title="Développeur web Access Code School">Ndeye N Léye</a></li>
+                                <li><a href="#" title="Développeur web Access Code School">Omar Mbaye</a></li>
+                                <li><a href="#" title="Développeur web Access Code School">El Hadji Ibrahima Sagna</a></li>
+                                <li><a href="#" title="Développeur web Access Code School">Aliou Sow</a></li>
+                            </ul>
+                        </p>
                     </div>
                     <div class="col-md-3 col-md-pull-6 col-sm-4 item">
-                        <h3>Services</h3>
-                        <ul>
-                            <li><a href="#">Web design</a></li>
-                            <li><a href="#">Development</a></li>
-                            <li><a href="#">Hosting</a></li>
-                        </ul>
+                        
                     </div>
                     <div class="col-md-3 col-md-pull-6 col-sm-4 item">
                         <h3>About</h3>
                         <ul>
-                            <li><a href="#">Company</a></li>
-                            <li><a href="#">Team</a></li>
-                            <li><a href="#">Careers</a></li>
+                            <li><a href="http://accesscodeschool.fr" title="Access Code School">Access Code School</a></li>
+                            <li><a href="https://onlineformapro.com" title="Online FormaPro">Online FormaPro</a></li>
+                            <li><a href="https://accessrobotique.fr" title="Access Robotique">Access Robotique</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-12 col-sm-4 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
+                    <div class="col-md-12 col-sm-4 item social">
+                        <a href="#"><i class="icon ion-social-facebook"></i></a>
+                        <a href="#"><i class="icon ion-social-twitter"></i></a>
+                        <a href="#"><i class="icon ion-social-linkedin"></i></a>                        
+                    </div>
                 </div>
                 <p class="copyright">© 2018 - Access Code School Dakar</p>
             </div>
@@ -137,7 +181,7 @@
     </div>
     <div class="features-boxed"></div>
     <script src="public/js/jquery.min.js"></script>
-    <script src="public/bootstrap/js/bootstrap.min.js"></script>
+    {# <script src="public/bootstrap/js/bootstrap.min.js"></script> #}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
 </body>
 

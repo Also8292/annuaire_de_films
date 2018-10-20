@@ -21,22 +21,24 @@ if($link == '/' || $link == 'accueil') {
 
     $films = array();
     $images = array();
+    $desc = array();
 
     while($resultat = $request->fetch()) {
         array_push($films, $resultat['nomF']);
         array_push($images, $resultat['pic']);
+        array_push($desc, $resultat['descript']);
     }
     
-    echo $twig->render('accueil.twig', ['link' => $link, 'title' => $link, 'films' => $films, 'images' => $images]);
+    echo $twig->render('accueil.twig', ['title' => $link, 'films' => $films, 'images' => $images, 'description' => $desc]);
 }
 
 else if($link == 'about') {
-    echo $twig->render('apropos.twig', ['link' => $link, 'title' => $link]);
+    echo $twig->render('apropos.twig', ['title' => $link]);
 }
 
 else if($link == 'contacts') {
-    echo $twig->render('contact.twig', ['link' => $link, 'title' => $link]);
+    echo $twig->render('contact.twig', ['title' => $link]);
 }
 else if($link == 'services') {
-    echo $twig->render('services.twig', ['link' => $link, 'title' => $link]);
+    echo $twig->render('services.twig', [ 'title' => $link]);
 }
