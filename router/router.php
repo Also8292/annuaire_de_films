@@ -39,6 +39,3 @@ else if($link == 'about') {
 else if($link == 'contacts') {
     echo $twig->render('contact.twig', ['title' => $link]);
 }
-else if($link == 'services') {
-    echo $twig->render('services.twig', [ 'title' => $link]);
-}

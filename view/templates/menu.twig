@@ -1,10 +1,43 @@
+<!DOCTYPE html>
+<html>
 
-<nav>
-<ul>
-    <li><a href="accueil">Accueil</a></li>
-    <li><a href="about">A Propos</a></li>
-    <li><a href="contacts">Contact</a></li>
-    <li><a href="services">Services</a></li>
-</ul>
-</nav>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+   {% if title == '/'  %}
+       {% set title = 'Accueil' %}   
+   {% endif %}
+
+    <title>CinéZone - {{ title }}</title>
+    <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="public/fonts/material-icons.css">
+    <link rel="stylesheet" href="public/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <link rel="stylesheet" href="public/css/styles.min.css">
+</head>
+<body>
+    {# menu #}
+    <nav class="sidebar_menu" onclick="hiddenMenu()">
+        <ul>
+            <li><a href="accueil">Accueil</a></li>
+            <li><a href="about">APropos</a></li>
+            <li><a href="contacts">Contact</a></li>
+        </ul>
+    </nav>
+    <div id="menu_hamburger" onclick="showMenu()">
+        <!-- <a href=""> -->
+            {# <i class="material-icons">menu</i> #}
+            
+            <img src="public/img/menu.png" width="30" height="30">
+        <!-- </a> -->
+    </div>
+    <script>
+        var menu = document.querySelector('#menu');
+        function showMenu() {
+            document.querySelector('.sidebar_menu').classList.toggle('show');
+        }
+        function hiddenMenu() {
+            document.querySelector('.sidebar_menu').classList.remove('show');
+        }
+    </script>
